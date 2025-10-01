@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $category;
+
+    public function __construct(){
+        $this->category = new Category();
+    }
     public function index()
     {
-        //
+        $response['categories'] = $this->category->all();
+        return view('pages.index')->with($response);
     }
 
     /**
@@ -27,7 +31,6 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
