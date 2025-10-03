@@ -48,7 +48,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $response['category'] = $this->category->find($id);
+        return view('category.edit')->with($response);
     }
 
     /**
@@ -56,7 +57,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $category = $this->category->find($id);
+        $category->update(array_merge($category->toArray(), $request->toArray()));
+        return redirect('category')->with('flash_message', 'Category updated!');
     }
 
     /**

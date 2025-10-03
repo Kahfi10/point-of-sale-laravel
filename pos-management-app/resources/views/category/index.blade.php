@@ -43,7 +43,7 @@
                     <tbody>
                         @foreach ($categories as $category)
                             <tr>
-                                <td scope="col">{{ ++$key }}</td>
+                                <td scope="col">{{ ++$loop->index }}</td>
                                 <td scope="col">{{ $category->catname }}</td>
                                 <td scope="col">
                                     @if ($category->status == 1)
@@ -55,8 +55,9 @@
 
                                 <td scope='col'>
                                     <a href="{{ route('category.edit', $category->id) }}">
-                                    <button class="btn btn-primary btn-sm"></button>
-                                    <i class="fa fa-pencil-square-o" aria-hidden="true">Edit</i>
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                                    </button>
                                 </a>
 
                                 <form action="{{ route('category.destroy', $category->id) }}" method="POST" style="display:inline;">
