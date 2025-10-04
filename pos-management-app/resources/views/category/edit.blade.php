@@ -9,7 +9,7 @@
             <div class="col-md-8">
             <div class="form-area">
                 <form method="POST" action="{{ route('category.update', $category->id) }}">
-                    @csrf
+                    {!! csrf_field() !!}
                     @method('PATCH')
                     <div class="row">
                         <div class="col-md-6">
