@@ -41,9 +41,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($categories as $key => $category)
+                        @foreach ($categories as $category)
                             <tr>
-                                <td scope="col">{{ ++$key }}</td>
+                                <td scope="col">{{ ++$loop->index }}</td>
                                 <td scope="col">{{ $category->catname }}</td>
                                 <td scope="col">
                                     @if ($category->status == 1)
