@@ -24,11 +24,8 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-
-
         $this->category->create($request->all());
         return redirect()->back();
-
     }
 
 
@@ -42,9 +39,8 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $category = $this->category->find($id);
-
         $category->update(array_merge($category->toArray(), $request->toArray()));
-        return redirect('category');
+        return redirect('category')->with('flash_message', 'Category updated successfully!');
     }
 
     public function destroy(string $id)

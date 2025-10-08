@@ -41,9 +41,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($categories as $category)
+                        @foreach ($categories as $key => $category)
                             <tr>
-                                <td scope="col">{{ ++$loop->index }}</td>
+                                <td scope="col">{{ ++$key }}</td>
                                 <td scope="col">{{ $category->catname }}</td>
                                 <td scope="col">
                                     @if ($category->status == 1)
@@ -54,16 +54,17 @@
                                 </td>
 
                                 <td scope='col'>
-                                    <a href="{{ route('category.edit', $category->id) }}">
-                                    <button class="btn btn-success btn-sm">
+                                    <a href="{{ route('category.edit', $category->id) }}" class="btn btn-success btn-sm">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
-                                    </button>
-                                </a>
+                                    </a>
 
-                                <form action="{{ route('category.destroy', $category->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    <form action="{{ route('category.destroy', $category->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this category?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
