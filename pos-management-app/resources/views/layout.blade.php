@@ -32,6 +32,18 @@
             </div>
                 @yield('content')
         </div>
+
+        <div class="main-content">
+            <div class="font-weight-bold text-start p-3 mb-3 mt-10">
+                <h1>Point Of Sale Management</h1>
+            </div>
+            <div class="font-size-16 text-start p-3 mb-3">
+                <h2>What is Point Of Sale Management?</h2>
+                <p class="fs-5 ">Point of Sale (POS) Management refers to the process of overseeing and controlling the transactions that occur at the point of sale in a retail environment. This includes managing sales, inventory, customer data, and financial reporting to ensure efficient and accurate operations.</p>
+            </div>
+
+            @yield('main-content')
+        </div>
     </div>
 
     @include('libraries.script')
