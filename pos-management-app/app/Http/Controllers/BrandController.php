@@ -47,7 +47,8 @@ class BrandController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $response['brand'] = $this->brand->find($id);
+        return view ('brand.edit')->with($response);
     }
 
     /**
@@ -55,7 +56,9 @@ class BrandController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $brand = $this->brand->find($id);
+        $brand->update(array_merge($brand->toArray(), $request->toArray()));
+        return redirect('brand')->with('flash_message', 'Brand updated successfully!');
     }
 
     /**
@@ -63,6 +66,8 @@ class BrandController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $brand = $this->brand->find($id);
+        $brand->delete();
+        return redirect('brand');
     }
 }
