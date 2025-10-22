@@ -18,8 +18,8 @@ class ProductController extends Controller
         $products = $this->products->all();
         $categories = Category::pluck('catname', 'id');
         $brands = Brand::pluck('brandname', 'id');
-        
-        return view('products.index', compact('products', 'categories', 'brands'));
+
+        return view('product.index', compact('products', 'categories', 'brands'));
     }
 
     /**

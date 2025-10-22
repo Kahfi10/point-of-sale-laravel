@@ -18,11 +18,27 @@
                         <div class="col-md-6">
                             <label>Category</label>
                             <select name="cat_id" id="cat_id" class="form-control">
-                                @foreach ($categories as $id => $item)
-                                    <option value="{{ $id }}">{{ $item }}</option>
+                                @foreach ($categories as $id => $name)
+                                    <option value="{{ $id }}">{{ $name }}</option>
                                 @endforeach
                             </select>
                         </div>
+
+                        <div class="col-md-6">
+                            <label>Brand</label><br>
+
+                            <select name="brand_id" id="brand_id" class="form-control">
+                                @foreach ($brands as $id => $name)
+                                    <option value="{{ $id }}">{{ $name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Price</label>
+                            <input type="text" class="form-control" name="price">
+                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-md-12 mt-3">
@@ -35,29 +51,28 @@
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Category Name</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ($categories as $key => $category)
+                        @foreach ($products as $key => $product)
                             <tr>
                                 <td scope="col">{{ ++$key }}</td>
-                                <td scope="col">{{ $category->catname }}</td>
-                                <td scope="col">
-                                    @if ($category->status == 1)
-                                        true
-                                    @else
-                                        false
-                                    @endif
-                                </td>
+                                <td scope="col">{{ $product->productname }}</td>
+                                <td scope="col">{{ $product->category->catname }}</td>
+                                <td scope="col">{{ $product->brand->brandname }}</td>
+                                <td scope="col">{{ $product->price }}</td>
 
                                 <td scope='col'>
-                                    <a href="{{ route('category.edit', $category->id) }}" class="btn btn-success btn-sm">
+                                    <a href="{{ route('product.edit', $product->id) }}" class="btn btn-success btn-sm">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
                                     </a>
 
-                                    <form action="{{ route('category.destroy', $category->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this category?')">
+                                    <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this product?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">
