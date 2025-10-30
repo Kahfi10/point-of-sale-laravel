@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,7 +35,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->products ->create($request->all());
+        return redirect()->back();
     }
 
     /**

@@ -8,13 +8,12 @@
 </head>
 <body>
 
-
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
                 <div class="container-fluid w-100">
-                    <a class="navbar-brand" href="#"><h4>Cashier</h4></a>
+                    <a class="navbar-brand" href="{{ url('/') }}"><h4>Cashier</h4></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
@@ -33,6 +32,8 @@
                 @yield('content')
         </div>
 
+        {{-- Tampilkan blok intro hanya di halaman awal (home) atau route tertentu --}}
+        @if(url()->current() == url('/') || Request::is('home') || Request::routeIs('home'))
         <div class="main-content">
             <div class="font-weight-bold text-start p-3 mb-3 mt-10">
                 <h1>Point Of Sale Management</h1>
@@ -44,6 +45,7 @@
 
             @yield('main-content')
         </div>
+        @endif
     </div>
 
     @include('libraries.script')
