@@ -7,5 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class SalesDetails extends Model
 {
+    protected $table = 'sales_details';
+    protected $primaryKey = 'id';
+    protected $fillable = [
+        'sales_id',
+        'product_id',
+        'price',
+        'qty',
+        'total_cost',
+    ];
+
+    public function sales() {
+        return $this->belongsTo(Sales::class, 'sales_id');
+    }
     use HasFactory;
 }
